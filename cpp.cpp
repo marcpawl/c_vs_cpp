@@ -10,8 +10,8 @@
 void 
 str_replace(std::string& target, const char needle, const char replacement)
 {
-  std::string::size_type n;
-  while ( ( n = target.find( needle) ) != std::string::npos )
+  std::string::size_type n = 0;
+  while ( ( n = target.find( needle, n) ) != std::string::npos )
   {
     target[n] = replacement;
   }
