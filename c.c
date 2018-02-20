@@ -1,4 +1,8 @@
 
+#include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 void str_replace(char *target, const char *needle, const char *replacement)
 {
@@ -32,3 +36,23 @@ void str_replace(char *target, const char *needle, const char *replacement)
     // write altered string back to target
     strcpy(target, buffer);
 }
+
+int main(int argc, char** argv)
+{
+  const char* orig=
+ #include "data.txt"
+  int len = strlen(orig);
+  char* target = malloc(len+1);
+  assert(target);
+  strncpy(target, orig, len);
+
+  const char* needle=",";
+  const char* replacement = "\n";
+
+  str_replace(target, needle, replacement);
+
+  fwrite(target, 1, len, stdout);
+
+  return 0;
+} 
+
