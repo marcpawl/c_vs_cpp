@@ -6,7 +6,9 @@
 
 void str_replace(char *target, const char *needle, const char *replacement)
 {
-    char buffer[1024] = { 0 };
+    size_t target_len = strlen(target);
+    char* buffer =malloc(target_len);
+    assert(buffer);
     char *insert_point = &buffer[0];
     const char *tmp = target;
     size_t needle_len = strlen(needle);
@@ -35,6 +37,8 @@ void str_replace(char *target, const char *needle, const char *replacement)
  
     // write altered string back to target
     strcpy(target, buffer);
+
+    free(buffer);
 }
 
 int main(int argc, char** argv)
@@ -51,7 +55,9 @@ int main(int argc, char** argv)
 
   str_replace(target, needle, replacement);
 
+#if 0
   fwrite(target, 1, len, stdout);
+#endif
 
   return 0;
 } 
